@@ -11,7 +11,7 @@
         <module>rest-service-model</module>
         <module>rest-service-interface</module>
         <module>rest-service-implementation</module>
-        <!--<module>rest-service-deployment</module>-->
+        <module>rest-service-deployment</module>
     </modules>
 
     <properties>
@@ -57,6 +57,18 @@
             </dependency>
 
             <!-- Berkeley IO Dependencies -->
+            <dependency>
+                <groupId>io.berkeley.operations</groupId>
+                <artifactId>operations-library</artifactId>
+                <version>${operationsLibrary.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.berkeley.rest</groupId>
+                <artifactId>rest-library</artifactId>
+                <version>${restLibrary.version}</version>
+            </dependency>
+
             <dependency>
                 <groupId>io.berkeley.utility</groupId>
                 <artifactId>utility-library</artifactId>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="warn">
+    <Appenders>
+        <RollingFile name="RollingFile"
+                     fileName="logs/rest-service.log"
+                     filePattern="logs/rest-service.log.%d{yyyy-MM-dd}-%i.gz">
+            <PatternLayout>
+                <Pattern>%date{HH:mm:ss.SSS} [%thread] %-5level %logger{1.} - %msg%n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy />
+                <SizeBasedTriggeringPolicy size="1 GB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="30"/>
+        </RollingFile>
+    </Appenders>
+    <Loggers>
+        <Root level="debug">
+            <AppenderRef ref="RollingFile"/>
+        </Root>
+    </Loggers>
+</Configuration>

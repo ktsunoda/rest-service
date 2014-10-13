@@ -8,5 +8,5 @@
 
     <import resource="classpath:rest-service-model-application-context.xml"/>
 
-    <bean class="io.berkeley.rest.service.RestServiceImplementation"/>
+    <bean id="restServiceImplementation" class="io.berkeley.rest.service.RestServiceImplementation"/>
 </beans>
