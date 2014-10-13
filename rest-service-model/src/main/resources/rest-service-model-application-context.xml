@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	   					   http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="liquibase" class="liquibase.integration.spring.SpringLiquibase">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="changeLog" value="classpath:/db/changelog/rest/master.xml"/>
+    </bean>
+
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="annotatedPackages">
+            <list>
+                <value>io.berkeley.rest.model</value>
+            </list>
+        </property>
+        <property name="annotatedClasses">
+            <list>
+                <value>io.berkeley.rest.model.ModelObject</value>
+            </list>
+        </property>
+        <property name="entityInterceptor">
+            <bean class="io.berkeley.hibernate.interceptor.TimestampInterceptor"/>
+        </property>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">${hibernate.dialect}</prop>
+                <prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean id="modelObjectDAO" class="org.iternine.jeppetto.dao.DAOBuilder" factory-method="buildDAO">
+        <constructor-arg index="0" value="io.berkeley.rest.model.ModelObject"/>
+        <constructor-arg index="1" value="io.berkeley.rest.model.dao.ModelObjectDAO"/>
+        <constructor-arg index="2" value="org.iternine.jeppetto.dao.hibernate.HibernateQueryModelDAO"/>
+        <constructor-arg index="3">
+            <map>
+                <entry key="sessionFactory" value-ref="sessionFactory"/>
+            </map>
+        </constructor-arg>
+    </bean>
+</beans>
