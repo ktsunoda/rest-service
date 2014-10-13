@@ -10,8 +10,7 @@
     <modules>
         <module>rest-service-model</module>
         <module>rest-service-interface</module>
-
-        <!--<module>rest-service-implementation</module>-->
+        <module>rest-service-implementation</module>
         <!--<module>rest-service-deployment</module>-->
     </modules>
 

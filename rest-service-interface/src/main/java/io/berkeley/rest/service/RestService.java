@@ -1,8 +1,6 @@
 package io.berkeley.rest.service;
 
 
-import org.springframework.validation.annotation.Validated;
-
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -16,7 +14,6 @@ import javax.ws.rs.core.MediaType;
 @SuppressWarnings("UnusedDeclaration")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
-@Validated
 public interface RestService {
 
     @POST

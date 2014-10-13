@@ -13,12 +13,12 @@
         <property name="dataSource" ref="dataSource"/>
         <property name="annotatedPackages">
             <list>
-                <value>io.berkeley.rest.model</value>
+                <value>io.berkeley.rest.service.model</value>
             </list>
         </property>
         <property name="annotatedClasses">
             <list>
-                <value>io.berkeley.rest.model.ModelObject</value>
+                <value>io.berkeley.rest.service.model.ModelObject</value>
             </list>
         </property>
         <property name="entityInterceptor">
@@ -37,8 +37,8 @@
     </bean>
 
     <bean id="modelObjectDAO" class="org.iternine.jeppetto.dao.DAOBuilder" factory-method="buildDAO">
-        <constructor-arg index="0" value="io.berkeley.rest.model.ModelObject"/>
-        <constructor-arg index="1" value="io.berkeley.rest.model.dao.ModelObjectDAO"/>
+        <constructor-arg index="0" value="io.berkeley.rest.service.model.ModelObject"/>
+        <constructor-arg index="1" value="io.berkeley.rest.service.model.dao.ModelObjectDAO"/>
         <constructor-arg index="2" value="org.iternine.jeppetto.dao.hibernate.HibernateQueryModelDAO"/>
         <constructor-arg index="3">
             <map>
