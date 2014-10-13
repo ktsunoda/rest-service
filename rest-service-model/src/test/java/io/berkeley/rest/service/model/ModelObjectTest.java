@@ -1,7 +1,7 @@
-package io.berkeley.rest.model;
+package io.berkeley.rest.service.model;
 
 
-import io.berkeley.rest.model.dao.ModelObjectDAO;
+import io.berkeley.rest.service.model.dao.ModelObjectDAO;
 import org.iternine.jeppetto.dao.NoSuchItemException;
 import org.junit.Test;
 import org.junit.runner.RunWith;

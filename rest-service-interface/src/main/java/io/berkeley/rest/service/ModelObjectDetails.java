@@ -1,44 +1,54 @@
-package io.berkeley.rest.model;
+package io.berkeley.rest.service;
 
 
-import io.berkeley.hibernate.entity.TimestampedEntity;
+import com.google.common.base.Strings;
+import io.berkeley.rest.service.model.ModelObject;
+import io.berkeley.serialization.BaseDetails;
 import io.berkeley.serialization.Model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import java.util.Date;
 
 
 @SuppressWarnings("UnusedDeclaration")
-@Entity
-@Table(name = "model_object")
-public class ModelObject
-        implements Model<String>, TimestampedEntity {
+public class ModelObjectDetails extends BaseDetails<ModelObjectDetails, String> {
 
     //------------------------------------------------------------------------------------------------
     // Variables - Private
     //------------------------------------------------------------------------------------------------
 
-    @Id
-    @GeneratedValue(generator = "bid_identifier_generator")
-    @Column(name = "id")
     private String id;
-
-    @Column(name = "name")
     private String name;
-
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "created_date")
     private Date createdDate;
-
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "last_modified_date")
     private Date lastModifiedDate;
+
+
+    //------------------------------------------------------------------------------------------------
+    // Implementations - BaseDetails
+    //------------------------------------------------------------------------------------------------
+
+    @Override
+    public ModelObjectDetails fromModel(Model<String> model) {
+        ModelObject modelObject = (ModelObject) model;
+
+        this.id = modelObject.getId();
+        this.name = modelObject.getName();
+        this.createdDate = modelObject.getCreatedDate();
+        this.lastModifiedDate = modelObject.getLastModifiedDate();
+
+        return this;
+    }
+
+
+    @Override
+    public <M extends Model<String>> M toModel(M model) {
+        ModelObject modelObject = (ModelObject) model;
+
+        if (!Strings.isNullOrEmpty(this.name)) {
+            modelObject.setName(this.name);
+        }
+
+        return model;
+    }
 
 
     //------------------------------------------------------------------------------------------------
@@ -84,4 +94,3 @@ public class ModelObject
         this.lastModifiedDate = lastModifiedDate;
     }
 }
-

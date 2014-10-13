@@ -1,7 +1,7 @@
-package io.berkeley.rest.model.dao;
+package io.berkeley.rest.service.model.dao;
 
 
-import io.berkeley.rest.model.ModelObject;
+import io.berkeley.rest.service.model.ModelObject;
 import org.iternine.jeppetto.dao.GenericDAO;
 
 
